@@ -56,7 +56,7 @@ export EDITOR='vim'
 #==================================================#
 
 # Path to the bash it configuration
-export BASH_IT="/home/fhenriquez/.bash_it"
+export BASH_IT="$HOME/.bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
@@ -73,13 +73,13 @@ export GIT_HOSTING='git@git.domain.com'
 unset MAILCHECK
 
 # Change this to your console based IRC client of choice.
-export IRC_CLIENT='irssi'
+#export IRC_CLIENT='irssi'
 
 # Set this to the command you use for todo.txt-cli
-export TODO="t"
+#export TODO="t"
 
 # Set this to false to turn off version control status checking within the prompt for all themes
-export SCM_CHECK=true
+#export SCM_CHECK=true
 
 # Set Xterm/screen/Tmux title with only a short hostname.
 # Uncomment this (or set SHORT_HOSTNAME to something else),
@@ -107,4 +107,4 @@ export SCM_CHECK=true
 # export BASH_IT_RELOAD_LEGACY=1
 
 # Load Bash It
-source "$BASH_IT"/bash_it.sh
+source $BASH_IT/bash_it.sh
