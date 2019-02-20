@@ -188,15 +188,6 @@ set foldlevel=2
 " z+Shift+r decreases the foldlevel to zero -- all folds will be open.
 
 "----------------------------------------------------------------
-set nocompatible
-" Initialisation de pathogen
-call pathogen#infect()
-call pathogen#helptags()
-
-set number
-
-filetype plugin indent on
-syntax on
 runtime! config/**/*.vim
 
 "----------------------------------------------------------------
