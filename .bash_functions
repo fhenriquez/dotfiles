@@ -329,22 +329,13 @@ startmyday()
 # Open all likely work applications.
 startwork()
 (
-    open -a Skype\ for\ Business
+    open -a Microsoft\ Teams
     open -a Microsoft\ Outlook
     open -a Firefox
     open -a Evernote
     open -a flowdock
 
 )
-
-# Open mopidy and ncmpcpp, connect to spotify account.
-spotify()
-{
-    mopidy &
-    echo -e "${IBlue}Starting Spotify...${Color_Off}"
-    sleep 10
-    ncmpcpp
-} 
 
 # Setting remind function. 
 # Lets you set reminders to display whenever you open a new terminal. 
