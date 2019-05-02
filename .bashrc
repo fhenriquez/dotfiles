@@ -37,6 +37,11 @@ export HISTFILESIZE=
 export HISTCONTROL="ignoreboth"
 export HISTIGNORE="ls:ps:history"
 
+# When the shell exits, append to the history file instead of overwriting it
+shopt -s histappend
+
+# After each command, append to the history file and reread it
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 source ~/.bash_functions
 
 # Make bash check its window size after a process completes
