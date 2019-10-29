@@ -424,6 +424,23 @@ nmap <F3> i<C-R>=strftime("%d%b%Y %a %T %Z")<CR><Esc>
 imap <F3> <C-R>=strftime("%d%b%Y %a %T %Z")<CR>
 
 "------------------------------------------------------
+"Remove all trailing whitespace by pressing F5
+"nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+nnoremap <F5> :call TrimWhitespace()<CR>
+
+" Run TrimWhitespace function before you write the file.
+" I do not have it enabled as some formats require trailing whitespace,
+" future enhancement would be make a list of formats to exclude.
+"autocmd BufWritePre * :call TrimWhitespace()
+
+"------------------------------------------------------
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
