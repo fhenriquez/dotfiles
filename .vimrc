@@ -414,9 +414,15 @@ else
   nmap gcc guu~h
   vmap gc gu~h
 endif
-"------------------------------------------------------
 
+"------------------------------------------------------
 autocmd FileType vim let b:vcm_tab_complete = 'vim'
+
+"------------------------------------------------------
+" Insert timestamp.
+nmap <F3> i<C-R>=strftime("%d%b%Y %a %T %Z")<CR><Esc>
+imap <F3> <C-R>=strftime("%d%b%Y %a %T %Z")<CR>
+
 "------------------------------------------------------
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
