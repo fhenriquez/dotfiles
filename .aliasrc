@@ -1,0 +1,63 @@
+# Alias file
+# This file has been deprecanted, and have been split into the bash-it aliases.
+ 
+# Alias
+alias cdown="cd /Users/$USER/Downloads"
+alias clls='clear; ls'
+alias cls='clear'
+
+# Confirm before overwriting something.
+alias cp="cp -i" 
+alias df='df -kTh'
+alias du='du -kh'
+alias ftoday='grep -h -d skip `date +%m/%d` /usr/share/calendar/*'
+alias grep='grep --color'
+alias histg="history | grep"
+alias ldir="ls -l | egrep '^d'" 
+alias lf="ls -l | egrep -v '^d'"
+alias ll='ls -l'
+alias ll='ls -l'
+alias lsa='ls -A'
+alias lsg='ls | grep'
+alias mkdir="mkdir -p"
+
+# Sudo last command.
+alias please='/usr/bin/sudo $(history -p !!)'
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias showreminders="cat ~/.reminder"
+
+# Displays calendar highlighting today's day.
+alias today='cal | grep --color -EC6 "\b$(date +%e | sed "s/ //g")"' # Display facts of the day.
+alias utcdate='TZ=utc date'
+alias vi='vim'
+alias weather='curl wttr.in/01830'
+alias mostcmd="cut -d ' ' -f1 ~/.bash_history | sort | uniq -c | sort -nr | head -10"
+
+# Stored Regular Expressions
+alias reg_mac='echo [0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}'
+alias grep_mac='grep -E `reg_mac`'
+alias reg_email='echo "[^[:space:]]+@[^[:space:]]+"'
+alias reg_ip='echo "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"'
+alias reg_uuid='echo "\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b"'
+alias no_color='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
+
+# Reference
+alias alphabet='echo a b c d e f g h i j k l m n o p q r s t u v w x y z'
+alias unicode='echo ✓ ™  ♪ ♫ ☃ ° Ɵ ∫'
+alias numalphabet='alphabet; echo 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6'
+alias ascii='man ascii | grep -iA 21 --color=never Oct'
+
+# Validate things
+alias yamlcheck='python -c "import sys, yaml as y; y.safe_load(open(sys.argv[1]))"'
+alias jsoncheck='jq "." >/dev/null <'
+alias ppv='puppet parser validate'
+
+# Application
+alias mutt='neomutt'
+
+# Openstack Command 
+alias osph='openstack hypervisor list --sort-column "Hypervisor Hostname"'
+alias osphs='openstack hypervisor show -c service_host $1'
+alias noval='nova limits --tenant $1'
+alias crbac='openstack network rbac create --type network --action access_as_shared --project service --target-project $1 external'
+alias ospmsv='curl "http://169.254.169.254/openstack/latest/meta_data.json"'
