@@ -171,6 +171,28 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 " set nopaste
 
+"------------------------------------------------------
+" Spell Check
+" [https://www.ostechnix.com/use-spell-check-feature-vim-text-editor/]
+"------------------------------------------------------
+set spell spelllang=en_us
+
+" Set spellfile to location that is guaranteed to exist, can be symlinked to
+" Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
+" set spellfile=$HOME/.vim/spell/vim-spell-en.utf-8.add
+set spellfile=~/.vim/spell/techspeak.utf-8.add
+
+nn <F7> :setlocal spell! spell?<CR>
+
+" word completion
+set complete+=kspell
+
+" ]s – Find the misspelled word after the cursor (Forward search).
+" [s – Find the misspelled word before the cursor (Backward search).
+" ]S (Note the capital “S”) – Similar to “]s” but only stop at bad words, not at rare words or words for another region.
+" [S – Similar to “[s” but search backwards.
+" z= - to find suggestions for the that particular word.
+
 "----------------------------------------------------------------
 " vim to auto-reload your configuration
 augroup myvimrchooks
@@ -179,12 +201,21 @@ augroup myvimrchooks
 augroup END
 
 "----------------------------------------------------------------
+" Movement
+"----------------------------------------------------------------
+" Go to the middle of the line
+map gm :call cursor(0, virtcol('$')/2)<CR>
+
+"----------------------------------------------------------------
 " Foldable Code snippets
+"----------------------------------------------------------------
 set foldmethod=indent
 set foldnestmax=10
-set nofoldenable
+
+"set nofoldenable
 set foldlevel=2
-"set foldmethod=syntax
+set foldmethod=syntax
+"set foldlevelstart=6
 
 " z+o opens a fold at the cursor.
 " z+Shift+o opens all folds at the cursor.
@@ -199,12 +230,14 @@ runtime! config/**/*.vim
 
 "------------------------------------------------------
 " Bash Funciton edits.
+"------------------------------------------------------
 let g:BASH_AuthorName   = 'Franklin Henriquez'
 let g:BASH_Email        = 'franklin.a.henrqiuez@gmail.com'
 let g:BASH_Company      = ''
 
 "----------------------------------------------------------------
 " NERDTree
+"----------------------------------------------------------------
 " Open a NERDTree automatically when vim starts up.
 " autocmd vimenter * NERDTree
 
@@ -229,6 +262,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 "------------------------------------------------------
 " NERD Commenter
+"------------------------------------------------------
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -312,6 +346,7 @@ vnoremap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 
 "------------------------------------------------------
 " Windows split navigation
+"------------------------------------------------------
 " Alt+leftarrow will go one window left, etc.
 "nmap <silent> <A-Up> :wincmd k<CR>
 "nmap <silent> <A-Down> :wincmd j<CR>
@@ -349,6 +384,7 @@ map + <C-W>+
 
 "------------------------------------------------------
 "fuzzy find Section
+"------------------------------------------------------
 map ; :Files<CR>
 
 "------------------------------------------------------
@@ -367,6 +403,7 @@ let g:multi_cursor_quit_key            = '<Esc>'
 
 "------------------------------------------------------
 " Syntastic
+"------------------------------------------------------
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -378,12 +415,14 @@ let g:syntastic_check_on_wq = 0
 
 "------------------------------------------------------
 " snipmate config
+"------------------------------------------------------
 " let g:snipMate = {}
 " let g:snipMate.scope_aliases = {}
 " let g:snipMate.scope_aliases['ruby'] = 'ruby,rails'
 
 "------------------------------------------------------
 " Re-Map capitalize words
+"------------------------------------------------------
 " gcw        - capitalize word (from cursor position to end of word)
 " gcW        - capitalize WORD (from cursor position to end of WORD)
 " gciw       - capitalize inner word (from start to end)
@@ -440,6 +479,43 @@ nnoremap <F5> :call TrimWhitespace()<CR>
 " future enhancement would be make a list of formats to exclude.
 "autocmd BufWritePre * :call TrimWhitespace()
 
+" .............................................................................
+" junegunn/limelight.vim
+" .............................................................................
+
+let g:limelight_conceal_ctermfg=244
+
+" .............................................................................
+" plasticboy/vim-markdown
+" .............................................................................
+
+autocmd FileType markdown let b:sleuth_automatic=0
+autocmd FileType markdown set conceallevel=0
+autocmd FileType markdown normal zR
+
+let g:vim_markdown_frontmatter=1
+"let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_folding_level = 6
+
+" .............................................................................
+" iamcco/markdown-preview.nvim
+" .............................................................................
+
+let g:mkdp_refresh_slow=1
+let g:mkdp_markdown_css='/home/fhenriquez/.local/lib/github-markdown-css/github-markdown.css'
+
+nnoremap <C-p> :MarkdownPreview<CR>
+" .............................................................................
+" JmshedVesuna/vim-markdown-preview 
+" .............................................................................
+" Grip, github flavoured markdown[https://github.com/JamshedVesuna/vim-markdown-preview#github]
+"let vim_markdown_preview_github=1
+
+" To display images with the hotkey mapping (defaults to Control p).
+"let vim_markdown_preview_toggle=1
+
+" Browser to user for preview.
+"let vim_markdown_preview_browser='Firefox'
 "------------------------------------------------------
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
@@ -465,6 +541,18 @@ Plug 'vim-scripts/SearchComplete'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/bash-support.vim'
 Plug 'Valloric/YouCompleteMe' , { 'do': './install.py --all' }
+Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+"Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+
+" Dim paragraphs above and below the active paragraph.
+Plug 'junegunn/limelight.vim'
+
+" Distraction free writing by removing UI elements and centering everything.
+Plug 'junegunn/goyo.vim'
+
+"Plug 'JamshedVesuna/vim-markdown-preview'
+"Plug 'vim-terraform'
 " Plug 'ajh17/VimCompletesMe'
 " Plug ''
 " Plug ''
