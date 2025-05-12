@@ -8,20 +8,32 @@
 #                                                                       #
 #########################################################################
 
+# Customizations
+
+#----------------------- Path Configuration -----------------------#
+# Add bin to path
+export PATH="$PATH:$HOME/bin:/usr/local/sbin"
+#export PATH="/usr/local/opt/openssl/bin:/usr/local/opt/python/libexec/bin:$PATH"
+
+#----------------------- Environment Variables -----------------------#
+
+# Shell editor options
+# Editor
+export EDITOR='vim'
+
+
 # System-wide .bashrc file for interactive bash(1) shells.
 if [ -z "$PS1" ]; then
    return
 fi
 
-# Adding color codes
-source ~/.bash_color_codes
+# Directories
 
-# Set CLICOLOR if you want Ansi Colors in iTerm2
-export CLICOLOR=1
+export REPOS="$HOME/github"
+export DOTFILES="$REPOS/dotfiles"
 
-# Set colors to match iTerm2 Terminal Colors
-export TERM=xterm-256color
 
+#----------------------- History -----------------------#
 # add date/time to history file
 #export HISTTIMEFORMAT="%m/%d/%y %T "
 export HISTTIMEFORMAT="[%F %T] "
@@ -37,24 +49,34 @@ export HISTFILESIZE=
 export HISTCONTROL="ignoreboth"
 export HISTIGNORE="ls:ps:history"
 
+
 # When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
 
 # After each command, append to the history file and reread it
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
-source ~/.bash_functions
+
+
+#----------- Sourcing -----------#
+
+## fuzzy find
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Adding color codes
+source ~/.config/bash_color_codes
+
+# Set CLICOLOR if you want Ansi Colors in iTerm2
+export CLICOLOR=1
+
+# Set colors to match iTerm2 Terminal Colors
+export TERM=xterm-256color
+
+source ~/.config/bash_functions
 
 # Make bash check its window size after a process completes
 shopt -s checkwinsize
 
 #[ -r "/etc/bashrc_$TERM_PROGRAM" ] && . "/etc/bashrc_$TERM_PROGRAM"
-
-# Add bin to path
-export PATH="$PATH:$HOME/bin:/usr/local/sbin"
-#export PATH="/usr/local/opt/openssl/bin:/usr/local/opt/python/libexec/bin:$PATH"
-
-# Editor
-export EDITOR='vim'
 
 #==================================================#
 # Starting Bash-it Config                          #
